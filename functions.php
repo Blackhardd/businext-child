@@ -1,21 +1,24 @@
 <?php
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
+if ( !defined( 'ABSPATH' ) ){
 	exit;
 }
 
 /**
  * Enqueue child scripts
  */
-
-if(!function_exists( 'businext_child_enqueue_scripts' ) ) {
+if( !function_exists( 'businext_child_enqueue_scripts' ) ) {
 	function businext_child_enqueue_scripts() {
 		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG == true ? '' : '.min';
 
-		if(!is_page_template('page-clientportal.php')){
-			wp_enqueue_style('businext-style', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ));
-			wp_enqueue_style('businext-child-style', get_stylesheet_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ));
+		if( !is_page_template( 'page-clientportal.php' ) ){
+			wp_enqueue_style( 'businext-style', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
+			wp_enqueue_style( 'businext-child-style', get_stylesheet_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
 		}
+
+		if( is_page_template( 'page-clientportal.php' ) ){
+		    wp_enqueue_script( 'clientportal-script', get_stylesheet_directory_uri() . '/assets/js/client-portal.js', array(), wp_get_theme()->get( 'Version' ) );
+        }
 	}
 }
 
@@ -23,9 +26,14 @@ add_action( 'wp_enqueue_scripts', 'businext_child_enqueue_scripts' );
 
 
 /**
+ *  Require framework file
+ */
+require_once get_stylesheet_directory() . '/inc/framework.php';
+
+
+/**
  *	Reset password form shortcode
  */
- 
 add_shortcode( 'reset_password_form', 'premialis_reset_password_form' );
 
 function premialis_reset_password_form(){

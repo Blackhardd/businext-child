@@ -2,11 +2,11 @@
     <table class="ui single line table">
         <thead>
             <tr>
-                <th><?=__('Type', 'bdd_deposit_administration');?></th>
-                <th><?=__('Initial deposit', 'bdd_deposit_administration');?></th>
-                <th><?=__('Current amount', 'bdd_deposit_administration');?></th>
-                <th><?=__('Profit', 'bdd_deposit_administration');?></th>
-                <th><?=__('Days past', 'bdd_deposit_administration');?></th>
+                <th><?=__( 'Type', 'bdd_deposit_administration' ); ?></th>
+                <th><?=__( 'Initial deposit', 'bdd_deposit_administration' ); ?></th>
+                <th><?=__( 'Current amount', 'bdd_deposit_administration'); ?></th>
+                <th><?=__( 'Profit', 'bdd_deposit_administration' ); ?></th>
+                <th><?=__( 'Days past', 'bdd_deposit_administration' ); ?></th>
                 <th></th>
             </tr>
         </thead>
@@ -30,10 +30,10 @@
                         <?=premialis_get_days_difference( $deposit->date ); ?>
                     </td>
                     <td class="collapsing">
-                        <?php if( $deposit->withdraw_requested ): ?>
-                            <button class="ui primary button fluid disabled"><?=__( 'Withdraw requested', 'bdd_deposit_administration' ); ?></button>
+                        <?php if( $deposit->withdrawal_requested ): ?>
+                            <button class="ui primary button fluid disabled"><?=__( 'Withdrawal requested', 'bdd_deposit_administration' ); ?></button>
                         <?php else: ?>
-                            <button class="ui primary button fluid" data-deposit-withdraw="<?=$deposit->id; ?>"><?=__( 'Withdraw', 'bdd_deposit_administration' ); ?></button>
+                            <button class="ui primary button fluid" data-request-withdrawal="<?=$deposit->id; ?>"><?=__( 'Withdraw', 'bdd_deposit_administration' ); ?></button>
                         <?php endif; ?>
                     </td>
                 </tr>
